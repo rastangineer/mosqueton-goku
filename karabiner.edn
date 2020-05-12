@@ -1,84 +1,101 @@
-{;; define application identifiers
- :applications {:chrome ["^com\\.google\\.Chrome$"]
-                :vscode ["^com\\.microsoft\\.VSCode$"]
-                :finder ["^com\\.apple\\.finder$"]}
- :simlayers {:caps_lock-mode {:key :caps_lock}}
- :main [;;CHROME
-        {:des "Chrome Fn Keys" :rules
-         [[:f1 :!Tpage_up :chrome] ;; Go to previous tab
-          [:f2 :!Tpage_down :chrome] ;; Go to next tab
-          [:f3 :!Cw] ;; Close tab
-          ]}
+{
+  ;; define application identifiers
+  :applications {:chrome ["^com\\.google\\.Chrome$"]
+                  :vscode ["^com\\.microsoft\\.VSCode$"]
+                  :finder ["^com\\.apple\\.finder$"]}
+  :simlayers {:caps_lock-mode {:key :caps_lock}}
+  :main [;;CHROME
+          {:des "Chrome Fn Keys" :rules
+          [[:f1 :!Tpage_up :chrome] ;; Go to previous tab
+            [:f2 :!Tpage_down :chrome] ;; Go to next tab
+            [:f3 :!Cw] ;; Close tab
+            ]}
 
-        ;; VSCODE
-        {:des "VSCode Fn Keys" :rules
-         [[:f1 :!CTOquote :vscode] ;; Go to previous editor tab
-          [:f2 :!CTOnon_us_pound :vscode] ;; Go to next editor tab
-          [:f3 :!Cw :vscode] ;; Close editor tab
-          ]}
+          ;; VSCODE
+          {:des "VSCode Fn Keys" :rules
+          [[:f1 :!CTOquote :vscode] ;; Go to previous editor tab
+            [:f2 :!CTOnon_us_pound :vscode] ;; Go to next editor tab
+            [:f3 :!Cw :vscode] ;; Close editor tab
+            ]}
 
-        ;;FINDER
-        {:des "Finder Fn Keys" :rules
-         [[:f1 :!COopen_bracket :finder];; Go back
-          [:f2 :!Copen_bracket :finder];; Cycle through windowss
-          [:f3 :!Cw :finder];; Close tab
-          ]}
+          ;;FINDER
+          {:des "Finder Fn Keys" :rules
+          [[:f1 :!COopen_bracket :finder];; Go back
+            [:f2 :!Copen_bracket :finder];; Cycle through windowss
+            [:f3 :!Cw :finder];; Close tab
+            ]}
 
-        {:des "capskey"
-         :rules [:caps_lock-mode
-                 [:open_bracket :!TOopen_bracket]
-                 [:close_bracket :!TOclose_bracket]
-                 [:semicolon :!TOsemicolon]
-                 [:quote :!TOquote]
-                 [:comma :!TOcomma]
-                 [:period :!TOperiod]
-                 [:slash :!TOslash]
-                 [:a :!TOa]
-                 [:b :!TOb]
-                 [:c :!TOc]
-                 [:d :!TOd]
-                 [:e :!TOe]
-                 [:f :!TOf]
-                 [:g :!TOg];; search text on Google
-                 [:h :!TOh]
-                 [:i :!TOi]
-                 [:j :!TOj]
-                 [:k :!TOk]
-                 [:l :!TOl]
-                 [:m :!TOm]
-                 [:n :!TOn]
-                 [:o :!TOo]
-                 [:p :!TOp]
-                 [:q :!TOq]
-                 [:r :!TOr]
-                 [:s :!TOs]
-                 [:t :!TOt]
-                 [:u :!TOu]
-                 [:v :!TOv]
-                 [:w :!TOw]
-                 [:x :!TOx]
-                 [:y :!TOy]
-                 [:z :!TOz]
-                 [:1 :!TO1]
-                 [:2 :!TO2]
-                 [:3 :!TO3]
-                 [:4 :!TO4]
-                 [:5 :!TO5]
-                 [:6 :!TO6]
-                 [:7 :!TO7]
-                 [:8 :!TO8]
-                 [:9 :!TO9]
-                 [:0 :!TO0]]}
+          {:des "capskey"
+          :rules [:caps_lock-mode
+                  [:open_bracket :!TOopen_bracket]
+                  [:close_bracket :!TOclose_bracket]
+                  [:semicolon :!TOsemicolon]
+                  [:quote :!TOquote]
+                  [:comma :!TOcomma]
+                  [:period :!TOperiod]
+                  [:slash :!TOslash]
+                  [:a :!TOa]
+                  [:b :!TOb]
+                  [:c :!TOc]
+                  [:d :!TOd]
+                  [:e :!TOe]
+                  [:f :!TOf]
+                  [:g :!TOg];; search text on Google
+                  [:h :!TOh]
+                  [:i :!TOi]
+                  [:j :!TOj]
+                  [:k :!TOk]
+                  [:l :!TOl]
+                  [:m :!TOm]
+                  [:n :!TOn]
+                  [:o :!TOo]
+                  [:p :!TOp]
+                  [:q :!TOq]
+                  [:r :!TOr]
+                  [:s :!TOs]
+                  [:t :!TOt]
+                  [:u :!TOu]
+                  [:v :!TOv]
+                  [:w :!TOw]
+                  [:x :!TOx]
+                  [:y :!TOy]
+                  [:z :!TOz]
+                  [:1 :!TO1]
+                  [:2 :!TO2]
+                  [:3 :!TO3]
+                  [:4 :!TO4]
+                  [:5 :!TO5]
+                  [:6 :!TO6]
+                  [:7 :!TO7]
+                  [:8 :!TO8]
+                  [:9 :!TO9]
+                  [:0 :!TO0]]}
 
-        {:des "Hyper Mode - Mousekey"
-         :rules [:caps_lock-mode
-                 [:down_arrow {:mkey {:y 1536}}]
-                 [:up_arrow {:mkey {:y -1536}}]
-                 [:left_arrow {:mkey {:x -1536}}]
-                 [:right_arrow {:mkey {:x 1536}}]
-                 [:return_or_enter {:pkey :button1}]
-                 [:!Creturn_or_enter {:pkey :button2}]]}]}
+          {:des "Hyper Mode - Mousekey"
+          :rules [:caps_lock-mode
+                  [:down_arrow {:mkey {:y 1536}}]
+                  [:up_arrow {:mkey {:y -1536}}]
+                  [:left_arrow {:mkey {:x -1536}}]
+                  [:right_arrow {:mkey {:x 1536}}]
+                  [:return_or_enter {:pkey :button1}]
+                  [:!Creturn_or_enter {:pkey :button2}]]}]
 
+ ;; code won't read cheatsheet section
+ ;; ! stand for mandatory
+ ;; # stand for optional
+ ;; C T O S for left command control optional shift
+ ;; F for fn
+ ;; need to prefix C T O S F with ! or #
+ :cheatsheet {:!Ca "command a" ;; mandatory left_command
+              :!Ta "control a" ;; mandatory left_control
+              :!Oa "option a"
+              :!Sa "shift a"
+              :#Sa "shift a" ;; keycode a, optional left_shift
+              :!CTOa "command control option a"
+              :!Cspacebar "command space"
+              :!Fa "fn a"
+              :##a "keycode a optional any"
+              :!!a "mandatory hyper(control command option shift) a "}}
 
 
 
