@@ -2,20 +2,41 @@
   ;; define application identifiers
   :applications {:chrome ["^com\\.google\\.Chrome$"]
                   :vscode ["^com\\.microsoft\\.VSCode$"]
-                  :finder ["^com\\.apple\\.finder$"]}
-  :simlayers {:caps_lock-mode {:key :caps_lock}}
+                  :finder ["^com\\.apple\\.finder$"]
+                  :ff ["^org\\.mozilla\\.firefox$"]
+                  :slack ["^com\\.tinyspeck\\.slackmacgap$"]
+                  :zoom ["us\\.zoom\\.xos"]
+                  }
+ 
+  :templates {:open "open \"%s\""}
+  :layers {
+    :hyper-mode {:key :caps_lock :alone {:key :escape}} ;; make the caps_lock key the hyper key
+                                                        ;; In "System Preferences/Keyboard/Modifier Keys..."
+                                                        ;; the Caps Lock Key is set to "No Action".
+  }
+  :simlayers {:launch-mode {:key :w}}
+ 
+  ;; :simlayers {:caps_lock-mode {:key :caps_lock}}
   :main [;;CHROME
           {:des "Chrome Fn Keys" :rules
           [[:f1 :!Tpage_up :chrome] ;; Go to previous tab
             [:f2 :!Tpage_down :chrome] ;; Go to next tab
             [:f3 :!Cw] ;; Close tab
+            [:f9 :!Cl]
             ]}
 
           ;; VSCODE
           {:des "VSCode Fn Keys" :rules
-          [[:f1 :!CTOquote :vscode] ;; Go to previous editor tab
-            [:f2 :!CTOnon_us_pound :vscode] ;; Go to next editor tab
-            [:f3 :!Cw :vscode] ;; Close editor tab
+          [[:f1 :!COleft_arrow :vscode] ;; Go to previous tab:  Option + Command + Left Arrow
+            [:f2 :!COright_arrow :vscode] ;; Go to next tab:    Option + Command + Right Arrow
+            [:f3 :!Cw :vscode] ;; Close tab                     Command + w
+            ]}
+
+          ;; FIREFOX
+          {:des "Firefox Fn Keys" :rules
+          [[:f1 :!COleft_arrow :ff] ;; Go to previous tab:  Option + Command + Left Arrow
+            [:f2 :!COright_arrow :ff] ;; Go to next tab:    Option + Command + Right Arrow
+            [:f3 :!Cw :ff] ;; Close tab                     Command + w
             ]}
 
           ;;FINDER
@@ -25,60 +46,37 @@
             [:f3 :!Cw :finder];; Close tab
             ]}
 
-          {:des "capskey"
-          :rules [:caps_lock-mode
-                  [:open_bracket :!TOopen_bracket]
-                  [:close_bracket :!TOclose_bracket]
-                  [:semicolon :!TOsemicolon]
-                  [:quote :!TOquote]
-                  [:comma :!TOcomma]
-                  [:period :!TOperiod]
-                  [:slash :!TOslash]
-                  [:a :!TOa]
-                  [:b :!TOb]
-                  [:c :!TOc]
-                  [:d :!TOd]
-                  [:e :!TOe]
-                  [:f :!TOf]
-                  [:g :!TOg];; search text on Google
-                  [:h :!TOh]
-                  [:i :!TOi]
-                  [:j :!TOj]
-                  [:k :!TOk]
-                  [:l :!TOl]
-                  [:m :!TOm]
-                  [:n :!TOn]
-                  [:o :!TOo]
-                  [:p :!TOp]
-                  [:q :!TOq]
-                  [:r :!TOr]
-                  [:s :!TOs]
-                  [:t :!TOt]
-                  [:u :!TOu]
-                  [:v :!TOv]
-                  [:w :!TOw]
-                  [:x :!TOx]
-                  [:y :!TOy]
-                  [:z :!TOz]
-                  [:1 :!TO1]
-                  [:2 :!TO2]
-                  [:3 :!TO3]
-                  [:4 :!TO4]
-                  [:5 :!TO5]
-                  [:6 :!TO6]
-                  [:7 :!TO7]
-                  [:8 :!TO8]
-                  [:9 :!TO9]
-                  [:0 :!TO0]]}
+          
+          {:des   "Slack keys"
+           :rules [[:f4 :!OSup_arrow :slack] ;; Option+Shift+Up_arrow to Previous unread channel or DM
+                   [:f1 :!C1 :slack] ;; Cmd+1 go to Workspace 1: WL
+                   [:f2 :!C2 :slack] ;; Cmd+2 go to Workspace 2: EST
+            ]
+          } 
+          
+          {:des   "Launch Apps"
+           :rules [
+             [:f4 [:open "/Applications/Slack.app"]]
+             [:f5 [:open "/Applications/zoom.us.app"]]
+            ]
+          } 
+          ;; Use caps_lock key to launch apps or actions in VSCode/VSCodium
+          {:des "Caps Lock"                   ; Hold 'caps_lock' + extra key
+           :rules [ :hyper-mode
+              [:c [:!SCc ] :slack  ]         ; 'Shift + Command + c ' - Format code in Slack
+              [:t [:!SCt ] :slack  ]         ; 'Shift + Command + t ' - Go to Threads in Slack
+              
+              [:spacebar [:!SCa  :slack] ]         ; 'Shift + Command + t ' - Go to All unreads in Slack
+              
+          ] 
+          }
 
-          {:des "Hyper Mode - Mousekey"
-          :rules [:caps_lock-mode
-                  [:down_arrow {:mkey {:y 1536}}]
-                  [:up_arrow {:mkey {:y -1536}}]
-                  [:left_arrow {:mkey {:x -1536}}]
-                  [:right_arrow {:mkey {:x 1536}}]
-                  [:return_or_enter {:pkey :button1}]
-                  [:!Creturn_or_enter {:pkey :button2}]]}]
+          {:des   "launch mode"
+            :rules [[:k [:open "/Applications/Emacs.app"] :launch-mode]
+                    [:l [:open "/Applications/Google Chrome.app"] :launch-mode]]}
+
+          ]
+
 
  ;; code won't read cheatsheet section
  ;; ! stand for mandatory
@@ -96,12 +94,3 @@
               :!Fa "fn a"
               :##a "keycode a optional any"
               :!!a "mandatory hyper(control command option shift) a "}}
-
-
-
-
-
-
-
-
-
