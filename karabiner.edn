@@ -15,9 +15,42 @@
                                                         ;; the Caps Lock Key is set to "No Action".
   }
   :simlayers {:launch-mode {:key :w}}
- 
-  ;; :simlayers {:caps_lock-mode {:key :caps_lock}}
-  :main [;;CHROME
+  
+  ;; Define different kinds of keyboards
+  :devices {
+      :kb-apple [
+          {:vendor_id 1452, :product_id 832 }     ;; MacBook keyboard
+      ]
+
+      :kb-mini [                                  ;; Mini Keyboard
+          {:vendor_id 1452, :product_id 556 }   ;; Mini Keyboard Bluetooth
+          {:vendor_id 4489, :product_id 34867 } ;; Mini Keyboard USB
+      ]
+
+      :kb-all [                                           ;; Group with all keyboards
+          {:vendor_id 1452, :product_id 832 }     ;; MacBook keyboard
+          {:vendor_id 1452, :product_id 556 }   ;; Mini Keyboard Bluetooth
+          {:vendor_id 4489, :product_id 34867 } ;; Mini Keyboard USB
+          {:vendor_id 1452, :product_id 591 }              ;; Keychron K3 keyboard
+      ]
+
+      :kb-keychron-k3 [
+          {:vendor_id 1452, :product_id 591 }              ;; Keychron K3 keyboard
+      ]
+
+  } ;; devices
+
+  :main [
+          {:des "Mini Keyboard shortcuts"
+          :rules [ :kb-mini
+              [:r [:volume_increment]] 
+              [:p [:volume_decrement]] 
+          ]
+          }
+          
+          
+          
+          ;;CHROME
           {:des "Chrome Fn Keys" :rules
           [[:f1 :!Tpage_up :chrome] ;; Go to previous tab
             [:f2 :!Tpage_down :chrome] ;; Go to next tab
@@ -58,6 +91,7 @@
            :rules [
              [:f4 [:open "/Applications/Slack.app"]]
              [:f5 [:open "/Applications/zoom.us.app"]]
+             [:f6 [:open "/Users/enrique.cuevas/Applications/Chrome Apps.localized/Google Calendar.app"]]
             ]
           } 
           ;; Use caps_lock key to launch apps or actions in VSCode/VSCodium
@@ -65,8 +99,12 @@
            :rules [ :hyper-mode
               [:c [:!SCc ] :slack  ]         ; 'Shift + Command + c ' - Format code in Slack
               [:t [:!SCt ] :slack  ]         ; 'Shift + Command + t ' - Go to Threads in Slack
+              [:spacebar [:!SCa]  :slack ]         ; 'Shift + Command + t ' - Go to All unreads in Slack
               
-              [:spacebar [:!SCa  :slack] ]         ; 'Shift + Command + t ' - Go to All unreads in Slack
+
+              [:a [:!SCm :return_or_enter]  :chrome ]         ; 'Shift + Command + m ' then Enter - To switch to another Chrome account
+                                                              ; On confluence and jira also works as "set Code format"
+              [:w [:!SCw] ]         ; 'Shift + Command + w ' - Close window
               
           ] 
           }
