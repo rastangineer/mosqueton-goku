@@ -7,7 +7,7 @@
                   :slack ["^com\\.tinyspeck\\.slackmacgap$"]
                   :zoom ["us\\.zoom\\.xos"]
                   }
- 
+
   :templates {:open "open \"%s\""}
   :layers {
     :hyper-mode {:key :caps_lock :alone {:key :escape}} ;; make the caps_lock key the hyper key
@@ -41,88 +41,95 @@
   } ;; devices
 
   :main [
-          {:des "Mini Keyboard shortcuts"
-          :rules [ :kb-mini
-              [:r [:volume_increment]] 
-              [:p [:volume_decrement]] 
-          ]
-          }
-          
-          
-          
-          ;;CHROME
-          {:des "Chrome Fn Keys" :rules
-          [[:f1 :!Tpage_up :chrome] ;; Go to previous tab
-            [:f2 :!Tpage_down :chrome] ;; Go to next tab
-            [:f3 :!Cw] ;; Close tab
-            [:f9 :!Cl]
-            ]}
+    ;; MINI KEYBOARD
+    {:des "Mini Keyboard shortcuts"
+    :rules [ :kb-mini
+        [:r [:volume_increment]] ;; lower knob turning right
+        [:p [:volume_decrement]] ;; lower knob turning left
+      ]
+    }
 
-          ;; VSCODE
-          {:des "VSCode Fn Keys" :rules
-          [[:f1 :!COleft_arrow :vscode] ;; Go to previous tab:  Option + Command + Left Arrow
-            [:f2 :!COright_arrow :vscode] ;; Go to next tab:    Option + Command + Right Arrow
-            [:f3 :!Cw :vscode] ;; Close tab                     Command + w
-            ]}
+    ;;CHROME
+    {:des "Chrome Fn Keys" 
+    :rules [
+        [:f1 :!Tpage_up :chrome] ;; Go to previous tab
+        [:f2 :!Tpage_down :chrome] ;; Go to next tab
+        [:f3 :!Cw] ;; Close tab
+        [:f9 :!Cl] ;; Go to Address Bar
+      ]
+    }
 
-          ;; FIREFOX
-          {:des "Firefox Fn Keys" :rules
-          [[:f1 :!COleft_arrow :ff] ;; Go to previous tab:  Option + Command + Left Arrow
-            [:f2 :!COright_arrow :ff] ;; Go to next tab:    Option + Command + Right Arrow
-            [:f3 :!Cw :ff] ;; Close tab                     Command + w
-            ]}
+    ;; VSCODE
+    {:des "VSCode Fn Keys"
+    :rules [
+        [:f1 :!COleft_arrow :vscode] ;; Go to previous tab:  Option + Command + Left Arrow
+        [:f2 :!COright_arrow :vscode] ;; Go to next tab:    Option + Command + Right Arrow
+        [:f3 :!Cw :vscode] ;; Close tab                     Command + w
+      ]
+    }
 
-          ;;FINDER
-          {:des "Finder Fn Keys" :rules
-          [[:f1 :!COopen_bracket :finder];; Go back
-            [:f2 :!Copen_bracket :finder];; Cycle through windowss
-            [:f3 :!Cw :finder];; Close tab
-            ]}
+    ;; FIREFOX
+    {:des "Firefox Fn Keys" 
+    :rules [
+        [:f1 :!COleft_arrow :ff] ;; Go to previous tab:  Option + Command + Left Arrow
+        [:f2 :!COright_arrow :ff] ;; Go to next tab:    Option + Command + Right Arrow
+        [:f3 :!Cw :ff] ;; Close tab                     Command + w
+      ]
+    }
 
-          
-          {:des   "Slack keys"
-           :rules [[:f4 :!OSup_arrow :slack] ;; Option+Shift+Up_arrow to Previous unread channel or DM
-                   [:f1 :!C1 :slack] ;; Cmd+1 go to Workspace 1: WL
-                   [:f2 :!C2 :slack] ;; Cmd+2 go to Workspace 2: EST
-            ]
-          } 
-          
-          {:des   "Launch Apps"
-           :rules [
-             [:f4 [:open "/Applications/Slack.app"]]
-             [:f5 [:open "/Applications/zoom.us.app"]]
-             [:f6 [:open "/Users/enrique.cuevas/Applications/Chrome Apps.localized/Google Calendar.app"]]
-            ]
-          } 
-          ;; Use caps_lock key to launch apps or actions in VSCode/VSCodium
-          {:des "Caps Lock"                   ; Hold 'caps_lock' + extra key
-           :rules [ :hyper-mode
-              [:c [:!SCc ] :slack  ]         ; 'Shift + Command + c ' - Format code in Slack
-              [:t [:!SCt ] :slack  ]         ; 'Shift + Command + t ' - Go to Threads in Slack
-              [:spacebar [:!SCa]  :slack ]         ; 'Shift + Command + t ' - Go to All unreads in Slack
-              
+    ;;FINDER
+    {:des "Finder Fn Keys" 
+    :rules [
+        [:f1 :!COopen_bracket :finder];; Go back
+        [:f2 :!Copen_bracket :finder];; Cycle through windowss
+        [:f3 :!Cw :finder];; Close tab
+      ]
+    }
 
-              [:a [:!SCm :return_or_enter]  :chrome ]         ; 'Shift + Command + m ' then Enter - To switch to another Chrome account
-                                                              ; On confluence and jira also works as "set Code format"
-              [:w [:!SCw] ]         ; 'Shift + Command + w ' - Close window
-              
-          ] 
-          }
+    
+    {:des   "Slack keys"
+    :rules [
+        [:f4 :!OSup_arrow :slack] ;; Option+Shift+Up_arrow to Previous unread channel or DM
+        [:f1 :!C1 :slack] ;; Cmd+1 go to Workspace 1: WL
+        [:f2 :!C2 :slack] ;; Cmd+2 go to Workspace 2: EST
+      ]
+    } 
+    
+    {:des   "Launch Apps"
+    :rules [
+        [:f4 [:open "/Applications/Slack.app"]]
+        [:f5 [:open "/Applications/zoom.us.app"]]
+        [:f6 [:open "/Users/enrique.cuevas/Applications/Chrome Apps.localized/Google Calendar.app"]]
+      ]
+    } 
+    
+    ;; Use caps_lock key to launch apps or actions in VSCode/VSCodium
+    {:des "Caps Lock"                   ; Hold 'caps_lock' + extra key
+    :rules [ :hyper-mode
+        [:c [:!SCc ] :slack  ]         ; 'Shift + Command + c ' - Format code in Slack
+        [:t [:!SCt ] :slack  ]         ; 'Shift + Command + t ' - Go to Threads in Slack
+        [:spacebar [:!SCa]  :slack ]         ; 'Shift + Command + t ' - Go to All unreads in Slack
+        [:a [:!SCm :return_or_enter]  :chrome ]         ; 'Shift + Command + m ' then Enter - To switch to another Chrome account
+        [:w [:!SCw] ]         ; 'Shift + Command + w ' - Close window
+      ] 
+    }
 
-          {:des   "launch mode"
-            :rules [[:k [:open "/Applications/Emacs.app"] :launch-mode]
-                    [:l [:open "/Applications/Google Chrome.app"] :launch-mode]]}
+    {:des "Launch Mode"
+    :rules [
+        [:k [:open "/Applications/Emacs.app"] :launch-mode]
+        [:l [:open "/Applications/Google Chrome.app"] :launch-mode]
+      ]
+    }
+  ]
 
-          ]
 
-
- ;; code won't read cheatsheet section
- ;; ! stand for mandatory
- ;; # stand for optional
- ;; C T O S for left command control optional shift
- ;; F for fn
- ;; need to prefix C T O S F with ! or #
- :cheatsheet {:!Ca "command a" ;; mandatory left_command
+  ;; code won't read cheatsheet section
+  ;; ! stand for mandatory
+  ;; # stand for optional
+  ;; C T O S for left command control optional shift
+  ;; F for fn
+  ;; need to prefix C T O S F with ! or #
+  :cheatsheet {:!Ca "command a" ;; mandatory left_command
               :!Ta "control a" ;; mandatory left_control
               :!Oa "option a"
               :!Sa "shift a"
@@ -131,4 +138,6 @@
               :!Cspacebar "command space"
               :!Fa "fn a"
               :##a "keycode a optional any"
-              :!!a "mandatory hyper(control command option shift) a "}}
+              :!!a "mandatory hyper(control command option shift) a "}
+              
+}
